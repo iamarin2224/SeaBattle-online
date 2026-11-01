@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Special+Elite&display=swap');
+@import "tailwindcss";
+
+:root {
+  --paper-bg: #F7F0DD;
+  --paper-light: #FFFCF4;
+  --paper-dark: #E8DCC2;
+  --paper-parchment: #DCCBA9;
+  
+  --grid-line: #C7D9E7;
+  --grid-line-strong: #A6C3DA;
+  
+  --ink-primary: #302A78;
+  --ink-dark: #201D50;
+  --ink-secondary: #585098;
+  --ink-faint: #8E88BE;
+  
+  --hit-red: #C73538;
+  --hit-red-faint: rgba(199, 53, 56, 0.15);
+  --coin-gold: #D7AA43;
+  --success-green: #3B7550;
+  
+  --font-hand: 'Patrick Hand', cursive, sans-serif;
+  --font-typewriter: 'Special Elite', cursive, serif;
+  --font-mono: 'Courier Prime', monospace;
+}
+
+body {
+  background-color: #2b1f16;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(68, 48, 32, 0.8) 0%, rgba(25, 17, 10, 0.98) 100%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.08) 0px, rgba(0, 0, 0, 0.08) 2px, transparent 2px, transparent 8px);
+  color: var(--ink-dark);
+  font-family: var(--font-hand);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Authentic Graph Paper Texture Sheet */
+.graph-paper-sheet {
+  background-color: var(--paper-light);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: relative;
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.15),
+    inset 0 0 40px rgba(180, 160, 120, 0.25);
+}
+
+.graph-paper-sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 50% 50%, transparent 60%, rgba(200, 180, 140, 0.35) 100%);
+  pointer-events: none;
+}
+
+/* Torn Edge / Paper Cutout effect */
+.torn-edge-bottom {
+  position: relative;
+}
+.torn-edge-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(circle, transparent 60%, var(--paper-light) 65%);
+  background-size: 14px 14px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+
+/* Hand-Drawn Ink Box Borders */
+.ink-box {
+  border: 2px solid var(--ink-primary);
+  border-radius: 4px;
+  box-shadow: 2px 3px 0px rgba(48, 42, 120, 0.2);
+  background: var(--paper-light);
+}
+
+.ink-box-rough {
+  border: 2px solid var(--ink-primary);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow: 3px 4px 0px rgba(48, 42, 120, 0.25);
+  background: var(--paper-light);
+  transition: all 0.15s ease-in-out;
+}
+
+.ink-box-rough:hover:not(:disabled) {
+  transform: translate(-1px, -2px);
+  box-shadow: 4px 6px 0px rgba(48, 42, 120, 0.3);
+}
+
+.ink-box-rough:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px rgba(48, 42, 120, 0.3);
+}
+
+/* Stamped Buttons */
+.ink-stamp-btn {
+  font-family: var(--font-typewriter);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 1.4rem;
+  background-color: var(--paper-light);
+  border: 2px solid var(--ink-primary);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  color: var(--ink-primary);
+  box-shadow: 3px 4px 0px rgba(48, 42, 120, 0.25);
+  transition: all 0.12s ease-in-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.ink-stamp-btn:hover:not(:disabled) {
+  background-color: #FFF9E6;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 5px 0px rgba(48, 42, 120, 0.35);
+}
+
+.ink-stamp-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px rgba(48, 42, 120, 0.3);
+}
+
+.ink-stamp-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(40%);
+}
+
+.ink-stamp-danger {
+  border-color: var(--hit-red);
+  color: var(--hit-red);
+  box-shadow: 3px 4px 0px rgba(199, 53, 56, 0.25);
+}
+
+.ink-stamp-danger:hover:not(:disabled) {
+  background-color: #FFF0F0;
+  box-shadow: 4px 5px 0px rgba(199, 53, 56, 0.35);
+}
+
+/* Air Defence Diagonal Pencil Hatching */
+.air-defense-hatching {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(199, 53, 56, 0.28),
+    rgba(199, 53, 56, 0.28) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+
+/* Targeting Crosshatching Preview */
+.targeting-hatching {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(199, 53, 56, 0.35),
+    rgba(199, 53, 56, 0.35) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Custom Scrollbars in Graph Paper Theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-secondary);
+  border-radius: 4px;
+}
